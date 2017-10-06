@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">sí</string>
+    <string name="no">no</string>
+    <string name="ok">De acuerdo</string>
+    <string name="thankyou">gracias</string>
+    <string name="next">siguiente</string>
+    <string name="hello">Hola</string>
+</resources>

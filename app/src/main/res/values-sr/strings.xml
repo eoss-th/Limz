@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">да</string>
+    <string name="thankyou">Хвала вам</string>
+    <string name="ok">ок</string>
+    <string name="no">не</string>
+    <string name="next">следећи</string>
+    <string name="hello">Здраво</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="ok">u redu</string>
+    <string name="thankyou">hvala ti</string>
+    <string name="next">Sljedeći</string>
+    <string name="hello">zdravo</string>
+</resources>

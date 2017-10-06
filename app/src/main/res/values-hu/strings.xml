@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="next">következő</string>
+    <string name="no">nem</string>
+    <string name="ok">rendben</string>
+    <string name="thankyou">köszönöm</string>
+    <string name="yes">Igen</string>
+    <string name="hello">Helló</string>
+</resources>

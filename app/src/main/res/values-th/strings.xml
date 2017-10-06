@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">ใช่</string>
+    <string name="no">ไม่</string>
+    <string name="ok">ok</string>
+    <string name="thankyou">ขอบคุณ</string>
+    <string name="next">แล้ว</string>
+    <string name="hello">สวัสดี</string>
+</resources>

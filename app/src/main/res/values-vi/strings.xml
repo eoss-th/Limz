@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="next">kế tiếp</string>
+    <string name="no">Không</string>
+    <string name="ok">được</string>
+    <string name="thankyou">cảm ơn bạn</string>
+    <string name="yes">Vâng</string>
+    <string name="hello">xin chào</string>
+</resources>

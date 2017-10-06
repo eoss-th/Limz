@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">Ναί</string>
+    <string name="no">όχι</string>
+    <string name="ok">Εντάξει</string>
+    <string name="thankyou">ευχαριστώ</string>
+    <string name="next">επόμενος</string>
+    <string name="hello">Χαίρετε</string>
+</resources>

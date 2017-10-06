@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">是</string>
+    <string name="thankyou">谢谢</string>
+    <string name="ok">好</string>
+    <string name="no">没有</string>
+    <string name="next">下一个</string>
+    <string name="hello">你好</string>
+</resources>

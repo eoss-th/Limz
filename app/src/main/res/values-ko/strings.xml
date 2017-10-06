@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="next">다음 것</string>
+    <string name="no">아니</string>
+    <string name="ok">승인</string>
+    <string name="thankyou">고맙습니다</string>
+    <string name="yes">예</string>
+    <string name="hello">안녕하세요</string>
+</resources>

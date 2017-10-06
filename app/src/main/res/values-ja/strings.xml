@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limz</string>
+    <string name="yes">はい</string>
+    <string name="thankyou">ありがとうございました</string>
+    <string name="ok">OK</string>
+    <string name="no">いいえ</string>
+    <string name="next">次</string>
+    <string name="hello">こんにちは</string>
+</resources>
