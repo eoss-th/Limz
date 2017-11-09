@@ -7,6 +7,8 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,10 +23,14 @@ import com.eoss.brain.NodeEvent;
 import com.eoss.brain.Session;
 import com.eoss.brain.command.data.ImportRawDataFromWebCommandNode;
 import com.eoss.brain.command.http.GetCommandNode;
+import com.eoss.brain.command.line.BizWakeupCommandNode;
+import com.eoss.brain.command.line.WakeupCommandNode;
 import com.eoss.brain.net.Context;
 import com.eoss.brain.net.ContextListener;
 import com.eoss.brain.net.FileContext;
 import com.eoss.brain.net.FileIndexSupportContext;
+import com.eoss.brain.net.GAEStorageContext;
+import com.eoss.brain.net.GAEWebIndexSupportContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     SpeechRecognizer speech;
     TextToSpeech textToSpeech;
+    ConstraintLayout layout;
     TextView text;
     ToggleButton web;
     Button like;
@@ -50,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         super.onCreate(savedInstanceState);
         setContentView(com.th.eoss.limz.R.layout.activity_main);
 
+        layout = (ConstraintLayout) findViewById(R.id.layout);
         text = (TextView) findViewById(R.id.text);
         web = (ToggleButton) findViewById(R.id.web);
         like = (Button) findViewById(R.id.like);
@@ -61,19 +69,22 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         }
 
         if (bothoiContext==null) {
-            bothoiContext = new FileIndexSupportContext(
-                    new FileContext(getFilesDir(), "minnie"))
-                    .callback(this)/*.domain("buddha-dhamma.com")*/;
+            bothoiContext =
+                    //new GAEWebIndexSupportContext(
+                    new GAEStorageContext("minnie");
         }
 
         if (session==null) {
             session = new Session(bothoiContext);
-            session.learning = true;
+
+            new Thread() {
+                public void run() {
+                    new WakeupCommandNode(session).execute(null);
+                }
+            }.start();
+            //session.learning = true;
         }
 
-        if (textToSpeech==null) {
-            textToSpeech = new TextToSpeech(this, this, "com.google.android.textToSpeech");
-        }
 
         like.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,11 +112,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     @Override
     protected void onResume() {
         super.onResume();
-        new Thread() {
-            public void run() {
-                new DroidWakeupCommandNode(session, MainActivity.this).execute(null);
-            }
-        }.start();
+        layout.setBackground(ContextCompat.getDrawable(this, R.drawable.muay_sleeping));
+
+        if (textToSpeech==null) {
+            textToSpeech = new TextToSpeech(this, this, "com.google.android.textToSpeech");
+        }
+
     }
 
     @Override
@@ -113,17 +125,10 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         super.onPause();
         stopListening();
         textToSpeech.stop();
-    }
-
-    @Override
-    protected void onDestroy() {
-
         if(textToSpeech != null) {
             textToSpeech.shutdown();
             textToSpeech = null;
         }
-
-        super.onDestroy();
     }
 
     private Intent recognizerIntent() {
@@ -151,10 +156,23 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         like.setEnabled(true);
         dislike.setEnabled(true);
         next.setEnabled(true);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                layout.setBackground(ContextCompat.getDrawable(
+                        MainActivity.this, R.drawable.muay_listening));
+            }
+        });
     }
 
     private void stopListening() {
 
+        layout.setBackground(ContextCompat.getDrawable(this, R.drawable.muay_smiling));
         web.setChecked(false);
         like.setEnabled(false);
         dislike.setEnabled(false);
@@ -259,10 +277,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         new Thread() {
             @Override
             public void run() {
-                final String response = session.parse(messageObject);
+                final String response = session.parse(messageObject).replace(">", "แล้วไปที่");
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        layout.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.muay_speaking));
                         text.setText(response);
                     }
                 });
@@ -308,12 +327,53 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
             textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
 
+                boolean talking;
+
                 @Override
                 public void onStart(final String s) {
+                    talking = true;
+                    new Thread() {
+                        public void run() {
+                            while (talking) {
+                                try {
+                                    Thread.sleep(500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        layout.setBackground(ContextCompat.getDrawable(
+                                                MainActivity.this, R.drawable.muay_listening));
+
+
+                                    }
+                                });
+                                if (!talking) break;
+                                try {
+                                    Thread.sleep(500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        layout.setBackground(ContextCompat.getDrawable(
+                                                MainActivity.this, R.drawable.muay_speaking));
+
+
+                                    }
+                                });
+                            }
+                        }
+                    }.start();
                 }
 
                 @Override
                 public void onDone(final String s) {
+                    talking = false;
                     handler.post(new Runnable() {
                         @Override
                         public void run() {

@@ -2,8 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
+                                             android:id="@+id/layout"
                                              android:layout_width="match_parent"
-                                             android:layout_height="match_parent" android:background="@android:color/black"
+                                             android:layout_height="match_parent" android:background="@drawable/muay_sleeping"
                                              tools:context=".MainActivity"
                                              tools:layout_editor_absoluteY="25dp"
                                              tools:layout_editor_absoluteX="0dp">
@@ -24,7 +25,8 @@
         app:layout_constraintHorizontal_bias="0.501"
         android:layout_marginBottom="20dp"
         app:layout_constraintVertical_bias="0.501"
-        app:layout_constraintBottom_toTopOf="@+id/web"/>
+        app:layout_constraintBottom_toTopOf="@+id/web"
+        android:visibility="gone"/>
 
     <ToggleButton
         android:id="@+id/web"
@@ -37,15 +39,17 @@
         android:background="@drawable/toggle_web"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible"
         android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/like"/>
+        app:layout_constraintBottom_toTopOf="@+id/next"/>
 
     <Button
         android:id="@+id/dislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dislike"
-        app:layout_constraintBottom_toTopOf="@+id/next"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/next"/>
 
     <Button
@@ -53,7 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/like"
-        app:layout_constraintBottom_toTopOf="@+id/next"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/next"/>
 
     <Button
@@ -62,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="@drawable/next"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

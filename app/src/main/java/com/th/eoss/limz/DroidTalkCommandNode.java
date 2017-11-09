@@ -89,11 +89,12 @@ public class DroidTalkCommandNode extends CommandNode {
                 session.insert(new LowConfidenceProblemCommandNode(session, messageObject, lowConfidenceKeys.get(0), lowConfidenceKeys.get(1), lowConfidenceKeys.get(2)));
                 responseText = messageObject + " " + lowConfidenceKeys.get(3);
             } else {
+                /*
                 String query = messageObject.toString().trim();
                 if (session.context.domain!=null && !session.context.domain.trim().isEmpty()) {
                     query += " site:" + session.context.domain;
                 }
-                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));
+                new GoogleCommandNode(session, null, 1).execute(MessageObject.build(messageObject,  query));*/
                 responseText = "";
             }
 
