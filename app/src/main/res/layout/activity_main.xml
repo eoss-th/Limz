@@ -9,40 +9,6 @@
                                              tools:layout_editor_absoluteY="25dp"
                                              tools:layout_editor_absoluteX="0dp">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="L!MZ"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="29sp"
-        android:textStyle="bold"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintVertical_bias="0.501"
-        app:layout_constraintBottom_toTopOf="@+id/web"
-        android:visibility="gone"/>
-
-    <ToggleButton
-        android:id="@+id/web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text=""
-        android:textOff=""
-        android:textOn=""
-        android:background="@drawable/toggle_web"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:visibility="invisible"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/next"/>
-
     <Button
         android:id="@+id/dislike"
         android:layout_width="wrap_content"
@@ -50,7 +16,7 @@
         android:background="@drawable/dislike"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/next"/>
+        app:layout_constraintLeft_toRightOf="@+id/gps"/>
 
     <Button
         android:id="@+id/like"
@@ -59,15 +25,18 @@
         android:background="@drawable/like"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/next"/>
+        app:layout_constraintRight_toLeftOf="@+id/gps"/>
 
-    <Button
-        android:id="@+id/next"
+    <ToggleButton
+        android:id="@+id/gps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
+        android:text=""
+        android:textOff=""
+        android:textOn=""
         android:layout_marginBottom="8dp"
-        android:background="@drawable/next"
-        android:visibility="invisible"
+        android:background="@drawable/gps"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
